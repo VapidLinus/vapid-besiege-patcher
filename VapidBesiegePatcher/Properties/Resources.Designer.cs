@@ -59,14 +59,5 @@ namespace Vapid.Patcher.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select Besiege.exe.
-        /// </summary>
-        internal static string MainForm_buttonBrowse_Click_Select_Besiege_exe {
-            get {
-                return ResourceManager.GetString("MainForm_buttonBrowse_Click_Select_Besiege_exe", resourceCulture);
-            }
-        }
     }
 }
