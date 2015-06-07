@@ -1,7 +1,9 @@
-﻿using Mono.Cecil;
+﻿using System;
+using Mono.Cecil;
 using Mono.Cecil.Cil;
 using System.Linq;
-using Activator = Vapid.ModLoader.Activator;
+using System.Reflection;
+using UnityEngine;
 
 namespace Vapid.Patcher
 {
@@ -33,7 +35,18 @@ namespace Vapid.Patcher
 
 			// Inject startup code
 			var processor = gameAwakeMethod.Body.GetILProcessor();
-			processor.Body.Instructions.Insert(0, processor.Create(OpCodes.Call, Util.ImportMethod<Activator>(game, "Activate")));
+			processor.Body.Instructions.Insert(0, processor.Create(OpCodes.Call, Util.ImportMethod<Application>(game, "get_dataPath")));
+			processor.Body.Instructions.Insert(1, processor.Create(OpCodes.Ldstr, "/Mods/VapidModLoader.dll"));
+			processor.Body.Instructions.Insert(2, processor.Create(OpCodes.Call, Util.ImportMethod<String>(game, "Concat", typeof(string), typeof(string))));
+			processor.Body.Instructions.Insert(3, processor.Create(OpCodes.Call, Util.ImportMethod<Assembly>(game, "LoadFrom", typeof(string))));
+			processor.Body.Instructions.Insert(4, processor.Create(OpCodes.Ldstr, "Vapid.ModLoader.Activator"));
+			processor.Body.Instructions.Insert(5, processor.Create(OpCodes.Callvirt, Util.ImportMethod<Assembly>(game, "GetType", typeof(string))));
+			processor.Body.Instructions.Insert(6, processor.Create(OpCodes.Ldstr, "Activate"));
+			processor.Body.Instructions.Insert(7, processor.Create(OpCodes.Callvirt, Util.ImportMethod<Type>(game, "GetMethod", typeof(string))));
+			processor.Body.Instructions.Insert(8, processor.Create(OpCodes.Ldnull));
+			processor.Body.Instructions.Insert(9, processor.Create(OpCodes.Ldnull));
+			processor.Body.Instructions.Insert(10, processor.Create(OpCodes.Callvirt, Util.ImportMethod<MethodBase>(game, "Invoke", typeof(object), typeof(object[]))));
+			processor.Body.Instructions.Insert(11, processor.Create(OpCodes.Pop));
 
 			new InjectionTest(game);
 

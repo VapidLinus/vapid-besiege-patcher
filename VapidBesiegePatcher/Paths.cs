@@ -15,7 +15,7 @@ namespace Vapid.Patcher
 
 		public static string ModsFolder
 		{
-			get { return Path.Combine("Besiege_Data", "Managed"); }
+			get { return Path.Combine("Besiege_Data", "Mods"); }
 		}
 	}
 }
