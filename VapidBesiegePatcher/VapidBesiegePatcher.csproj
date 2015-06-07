@@ -67,14 +67,16 @@
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Program Files (x86)\Steam\SteamApps\common\Besiege\Besiege_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="VapidModLoader, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Program Files (x86)\Steam\SteamApps\common\Besiege\Besiege_Data\Mods\VapidModLoader.dll</HintPath>
+      <HintPath>..\..\..\Program Files (x86)\Steam\SteamApps\common\Besiege\Besiege_Data\Managed\VapidModLoader.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyLoader.cs" />
+    <Compile Include="InjectionTest.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +88,7 @@
     <Compile Include="Paths.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
